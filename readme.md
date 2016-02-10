@@ -1,3 +1,13 @@
+## SMS Gateway Web Interface based on the Laravel Framework
+
+Full documentation will be available soon. (as soon as fully developed project)
+
+## Warning
+
+This is my school project for graduation. Only for educational purposes.
+
+Do not use it in real world because using your SIM card as SMS gateway is against your carrier's terms & conditions. 
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
