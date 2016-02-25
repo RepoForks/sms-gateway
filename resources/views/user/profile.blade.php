@@ -1,7 +1,6 @@
 @extends('admin.master')
 @section('title', 'Profile')
 
-
 @section('content')
 
 	<div class="row">

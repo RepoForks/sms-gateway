@@ -32,6 +32,14 @@ class User extends Authenticatable
 		return $this->hasMany('App\PreparedSms', 'user_id', 'id');
 	}
 
+	public function phoneNumbers(){
+		return $this->hasMany('App\PhoneNumber', 'user_id', 'id');
+	}
+
+	public function phoneNumberLists(){
+		return $this->hasMany('App\PhoneNumberLists', 'user_id', 'id');
+	}
+
 	/**
 	 * Return full name of user.
 	 */
@@ -47,5 +55,12 @@ class User extends Authenticatable
 		}
 	}
 
+	public function getDeleteUrl(){
+		return route('user.delete', $this->id);
+	}
+
+	public function getProfileUrl(){
+		return route('user.show', $this->id);
+	}
 
 }

@@ -77,8 +77,8 @@
 									<td>{{ $sms->description }}</td>
 									<td>{{ $sms->created_at }}</td>
 									<td>
-										<a href=""><i class="fa fa-edit"></i></a>
-										<a href=""><i class="fa fa-close"></i></a>
+										<a href="{{ $sms->getEditUrl() }}"><i class="fa fa-edit"></i></a>
+										<a href="{{ $sms->getDeleteUrl() }}"><i class="fa fa-close"></i></a>
 									</td>
 								</tr>
 							@endforeach

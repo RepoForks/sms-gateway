@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePreparedSmsTable extends Migration
+class CreateApisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreatePreparedSmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prepared_sms', function (Blueprint $table) {
+        Schema::create('apis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-	        $table->integer('sent_count');
-	        $table->text('text');
-	        $table->integer('maximum_characters')->default(160);
-	        $table->string('sms_id');
-	        $table->softDeletes();
+            $table->string('version');
+            $table->string('name');
+	        $table->string('api_name');
+	        $table->string('navigation_icon');
+	        $table->boolean('default_enable')->default(false);
+	        $table->boolean('should_enable')->default(true);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreatePreparedSmsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('prepared_sms');
+        Schema::drop('apis');
     }
 }

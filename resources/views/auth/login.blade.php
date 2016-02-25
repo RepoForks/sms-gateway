@@ -8,9 +8,9 @@
 		@include('admin.error')
 
 		<div class="col-md-6">
-			<h2 class="font-bold">Welcome to SMSgw+</h2>
+			<h2 class="font-bold">Welcome to SMSgw project</h2>
 
-			<p>add here some p elements just for fun or something for login</p>
+			<p>Before access to application you need to login first.</p>
 
 		</div>
 		<div class="col-md-6">
