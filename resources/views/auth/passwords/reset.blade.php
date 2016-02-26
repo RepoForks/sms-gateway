@@ -1,70 +1,50 @@
-@extends('layouts.app')
+@extends('auth.passwords.master')
+@section('title', 'Password reset')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+	<div class="ibox-content">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-                        {!! csrf_field() !!}
+		<h2 class="font-bold">Password reset</h2>
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+		<p>
+			This set new password for <strong>{{ $email }}</strong>.
+		</p>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+		<div class="row">
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}">
+			<div class="col-lg-12">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+				{!! Form::open(['url' => 'password/reset', 'method' => 'post']) !!}
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+				{!! Form::hidden('token', $token) !!}
 
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
+				{!! Form::hidden('email', $email) !!}
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+				{{-- password field --}}
+				<div class="form-group">
+					{!! Form::password('password', [
+						'class' => 'form-control',
+						'placeholder' => 'password'
+					]) !!}
+				</div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
+				{{-- password confirmation field --}}
+				<div class="form-group">
+					{!! Form::password('password_confirmation', [
+						'class' => 'form-control',
+						'placeholder' => 'password confirmation'
+					]) !!}
+				</div>
 
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+				{{--  submit field--}}
+				<div class="form-group">
+					{!! Form::submit('Change password', [
+						'class' => 'btn btn-primary block full-width m-b'
+					]) !!}
+				</div>
+				{!! Form::close() !!}
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-refresh"></i>Reset Password
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+			</div>
+		</div>
+	</div>
 @endsection

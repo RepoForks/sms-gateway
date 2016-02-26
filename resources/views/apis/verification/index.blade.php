@@ -1,9 +1,7 @@
 @extends('admin.master')
 @section('title', 'Verification API')
 
-
 @section('content')
-
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -17,6 +15,5 @@
 				</div>
 			</div>
 		</div>
-
 
 @endsection

@@ -8,7 +8,7 @@
 		@include('admin.error')
 
 		<div class="col-md-6">
-			<h2 class="font-bold">Welcome to SMSgw project</h2>
+			<h2 class="font-bold">Welcome to SMSgw</h2>
 
 			<p>Before access to application you need to login first.</p>
 
@@ -18,7 +18,7 @@
 
 				{!! Form::open(['route' => 'login', 'method' => 'post', 'class' => 'm-t', 'id' => 'login-form']) !!}
 
-				{{-- Email Field --}}
+				{{-- email field --}}
 				<div class="form-group">
 					{!! Form::text('email', null, [
 						'class' => 'form-control',
@@ -27,7 +27,7 @@
 					]) !!}
 				</div>
 
-				{{--  Field --}}
+				{{--  password field --}}
 				<div class="form-group">
 					{!! Form::password('password', [
 						'class' => 'form-control',
@@ -36,7 +36,7 @@
 					]) !!}
 				</div>
 
-				{{--  Submit --}}
+				{{--  submit field --}}
 				<div class="form-group">
 					{!! Form::submit('Login', [
 						'class' => 'btn btn-primary block full-width m-b'
@@ -48,9 +48,9 @@
 				</a>
 
 				<p class="text-muted text-center">
-					<small>Do not have an account?</small>
+					<small>Remembered password?</small>
 				</p>
-				<a class="btn btn-sm btn-white btn-block" href="{{ route('register.page') }}">Create an account</a>
+				<a class="btn btn-sm btn-white btn-block" href="{{ route('login.page') }}">Login</a>
 
 				{!! Form::close() !!}
 

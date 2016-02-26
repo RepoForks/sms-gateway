@@ -28,7 +28,7 @@ class User extends Authenticatable
 		return $this->hasMany('App\ApiKey', 'user_id', 'id');
 	}
 
-	public function preparedSms(){
+	public function smsTemplates(){
 		return $this->hasMany('App\PreparedSms', 'user_id', 'id');
 	}
 

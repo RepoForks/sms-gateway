@@ -5,6 +5,7 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}" />
 
 	<title>SMSgw | @yield('title', 'Login')</title>
 
@@ -19,14 +20,8 @@
 	@yield('content')
 
 	<hr/>
-	<div class="row">
-		<div class="col-md-6">
-			Copyright <a href="https://www.jasompeter.com" target="_blank">me</a>
-		</div>
-		<div class="col-md-6 text-right">
-			<small>© 2016</small>
-		</div>
-	</div>
+
+	@include('auth.footer')
 </div>
 
 @include('include.ins_footer')

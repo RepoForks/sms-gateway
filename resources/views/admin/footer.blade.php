@@ -4,6 +4,6 @@
 		</strong>
 	</div>
 	<div>
-		<strong>Copyright</strong> <a href="http://www.jasompeter.com" target="_blank">ps</a> &copy; 2015
+		<strong>MIT</strong>  &copy; 2016
 	</div>
 </div>

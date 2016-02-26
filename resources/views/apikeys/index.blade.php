@@ -13,16 +13,16 @@
 
 					{!! Form::open(['route' => 'keys.create', 'method' => 'post']) !!}
 
-						{{-- Description Field --}}
+						{{-- description field --}}
 						<div class="form-group">
-						    {!! Form::label('Description', 'Description:') !!}
+						    {!! Form::label('description', 'Key description:') !!}
 						    {!! Form::textarea('description', null, [
 						        'class' => 'form-control',
-						        'placeholder' => 'Enter some info about this key...'
+						        'placeholder' => 'This key is used for...'
 						    ]) !!}
 						</div>
 
-						{{-- Generate Key Submit --}}
+						{{-- submit field --}}
 						<div class="form-group">
 						    {!! Form::submit('Generate Key', [
 						        'class' => 'btn btn-primary'

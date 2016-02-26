@@ -10,7 +10,7 @@
 		<div class="col-md-6">
 			<h2 class="font-bold">Welcome to SMSgw</h2>
 
-			<p>here add some p elements or some useful info about registration</p>
+			<p>Create an account and start using SMSgw immediately.</p>
 
 		</div>
 		<div class="col-md-6">
@@ -18,7 +18,7 @@
 
 				{!! Form::open(['route' => 'register', 'method' => 'post', 'class' => 'm-t', 'id' => 'register-form']) !!}
 
-				{{--  First name Field --}}
+				{{--  first name field --}}
 				<div class="form-group">
 					{!! Form::text('first_name', null, [
 						'class' => 'form-control',
@@ -27,7 +27,7 @@
 					]) !!}
 				</div>
 
-				{{-- Last name Field --}}
+				{{-- last name field --}}
 				<div class="form-group">
 					{!! Form::text('last_name', null, [
 						'class' => 'form-control',
@@ -36,7 +36,7 @@
 					]) !!}
 				</div>
 
-				{{-- Email Field --}}
+				{{-- email field --}}
 				<div class="form-group">
 					{!! Form::email('email', null, [
 						'class' => 'form-control',
@@ -46,7 +46,7 @@
 				</div>
 
 
-				{{-- Pw  Field --}}
+				{{-- password field --}}
 				<div class="form-group">
 					{!! Form::password('password', [
 						'class' => 'form-control',
@@ -55,7 +55,7 @@
 					]) !!}
 				</div>
 
-				{{-- pw confimration Field --}}
+				{{-- password confimration field --}}
 				<div class="form-group">
 					{!! Form::password('password_confirmation', [
 						'class' => 'form-control',
@@ -64,7 +64,7 @@
 					]) !!}
 				</div>
 
-				{{-- Register Submit --}}
+				{{-- submit field --}}
 				<div class="form-group">
 					{!! Form::submit('Register', [
 						'class' => 'btn btn-primary block full-width m-b'

@@ -15,11 +15,11 @@ class PreparedSms extends Model
 	protected $fillable = ['user_id', 'sent_count', 'text', 'maximum_characters', 'sms_id', 'description'];
 
 	public function getEditUrl(){
-		return route('sms.prepared.edit', [$this->attributes['id']]);
+		return route('sms.template.edit', [$this->attributes['id']]);
 	}
 
 	public function getDeleteUrl(){
-		return route('sms.prepared.delete', [$this->attributes['id']]);
+		return route('sms.template.delete', [$this->attributes['id']]);
 	}
 
 }
