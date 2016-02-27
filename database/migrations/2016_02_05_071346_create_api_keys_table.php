@@ -21,6 +21,7 @@ class CreateApiKeysTable extends Migration
 	        $table->integer('received_count');
 	        $table->integer('error_count');
 	        $table->text('description');
+	        $table->softDeletes();
             $table->timestamps();
         });
     }

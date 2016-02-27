@@ -29,7 +29,7 @@ class User extends Authenticatable
 	}
 
 	public function smsTemplates(){
-		return $this->hasMany('App\PreparedSms', 'user_id', 'id');
+		return $this->hasMany('App\SmsTemplate', 'user_id', 'id');
 	}
 
 	public function phoneNumbers(){

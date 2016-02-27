@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PreparedSms extends Model
+class SmsTemplate extends Model
 {
 
 	use SoftDeletes;
 
-    protected $table = 'prepared_sms';
+    protected $table = 'sms_templates';
 
 	protected $fillable = ['user_id', 'sent_count', 'text', 'maximum_characters', 'sms_id', 'description'];
 
