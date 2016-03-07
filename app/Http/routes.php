@@ -9,22 +9,19 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function () {
 
-	// authentication routes
-	{
-		// Authentication Routes...
-		Route::get('login', ['as' => 'login.page', 'uses' => 'Auth\AuthController@showLoginForm']);
-		Route::post('login', ['as' => 'login','uses' => 'Auth\AuthController@login']);
-		Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
+	// Authentication Routes...
+	Route::get('login', ['as' => 'login.page', 'uses' => 'Auth\AuthController@showLoginForm']);
+	Route::post('login', ['as' => 'login','uses' => 'Auth\AuthController@login']);
+	Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 
-		// Registration Routes...
-		Route::get('register', ['as' => 'register.page', 'uses' => 'Auth\AuthController@showRegistrationForm'] );
-		Route::post('register', ['as' => 'register', 'uses' => 'Auth\AuthController@register']);
+	// Registration Routes...
+	Route::get('register', ['as' => 'register.page', 'uses' => 'Auth\AuthController@showRegistrationForm'] );
+	Route::post('register', ['as' => 'register', 'uses' => 'Auth\AuthController@register']);
 
-		// Password Reset Routes...
-		Route::get('password/reset/{token?}', ['as' => 'reset.page', 'uses' => 'Auth\PasswordController@showResetForm']);
-		Route::post('password/email', ['as' => 'reset.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
-		Route::post('password/reset', ['as' => 'reset.reset', 'uses' => 'Auth\PasswordController@reset']);
-	}
+	// Password Reset Routes...
+	Route::get('password/reset/{token?}', ['as' => 'reset.page', 'uses' => 'Auth\PasswordController@showResetForm']);
+	Route::post('password/email', ['as' => 'reset.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
+	Route::post('password/reset', ['as' => 'reset.reset', 'uses' => 'Auth\PasswordController@reset']);
 
 
 	Route::group(['middleware' => 'auth'], function(){
