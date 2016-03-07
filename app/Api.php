@@ -20,7 +20,7 @@ class Api extends Model
 	}
 
 	public function configuration(){
-		return $this->hasOne('App\\'. quotemeta($this->api_name).'Config');
+		return $this->hasOne('App\\'. ucfirst($this->api_name).'Config');
 	}
 
 }
