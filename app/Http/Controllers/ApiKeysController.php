@@ -20,7 +20,11 @@ class ApiKeysController extends Controller
 
 	public function generate(Request $request)
 	{
-		// TODO add limit based on plan
+
+		if(!\Auth::user()->validApiKeysLimit()){
+			return back()->withErrors(['You have reached the API key limit.']);
+		}
+
 		Session::flash('message', 'API key successfully generated and enabled!');
 		$description = $request->get('description');
 		ApiKey::create([

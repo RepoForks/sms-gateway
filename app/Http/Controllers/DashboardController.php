@@ -12,7 +12,15 @@ class DashboardController extends Controller
 
 
 	public function index(){
-		return view('dashboard.index');
+
+		$monthStats = [];
+
+		for($i = 1; $i <= 7; $i++) {
+			array_push($monthStats, \Auth::user()->getMonthCount($i));
+		}
+
+		return view('dashboard.index')
+			->withStats(json_encode($monthStats));
 	}
 
 	public function showStats(){

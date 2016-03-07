@@ -48,9 +48,9 @@
 				</a>
 
 				<p class="text-muted text-center">
-					<small>Remembered password?</small>
+					<small>Don't have an account?</small>
 				</p>
-				<a class="btn btn-sm btn-white btn-block" href="{{ route('login.page') }}">Login</a>
+				<a class="btn btn-sm btn-white btn-block" href="{{ route('register.page') }}">Register</a>
 
 				{!! Form::close() !!}
 

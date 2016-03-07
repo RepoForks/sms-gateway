@@ -96,11 +96,11 @@
 			rules: {
 				first_name: {
 					required : true,
-					minlength: 6
+					minlength: 4
 				},
 				last_name: {
 					required : true,
-					minlength: 6
+					minlength: 4
 				},
 				email: {
 					email   : true,

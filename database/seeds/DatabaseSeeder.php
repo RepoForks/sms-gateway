@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+	    $this->call(AdminUserTableSeeder::class);
         $this->call(AddVerificationApiSeed::class);
+	    $this->call(NumberPrefixesTableSeeder::class);
+	    $this->call(OperatorsTableSeeder::class);
     }
 }

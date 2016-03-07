@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSmsTemplates extends Migration
+class CreateSmsTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateSmsTemplates extends Migration
             $table->increments('id');
             $table->integer('user_id');
 	        $table->integer('sent_count');
-	        $table->text('text');
+	        $table->text('content');
 	        $table->integer('maximum_characters')->default(160);
 	        $table->string('sms_id');
 	        $table->text('description');

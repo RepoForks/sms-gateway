@@ -104,13 +104,15 @@
 					@else
 						<li>
 							@endif
-							<a href="{{ route('user.show', Auth::user()->id) }}"><i
+							<a href="{{ route('user.show') }}"><i
 										class="fa fa-user"></i> <span
 										class="nav-label">Profile</span></a>
 						</li>
 					</ul>
 				</li>
 
+
+			@if(\Auth::user()->isAdmin())
 			{{-- admin --}}
 			@if(($segment == 'users' && $second == null) || $segment == 'stats' || $segment == 'gateways')
 				<li class="active">
@@ -132,28 +134,27 @@
 						</li>
 
 					{{-- stats --}}
-					@if($segment == 'stats')
-						<li class="active">
-					@else
-						<li>
-							@endif
-							<a href="{{ route('dashboard.stats') }}"><i
-										class="fa fa-area-chart"></i> <span
-										class="nav-label">Statistics</span></a>
-						</li>
-
-					<!-- TODO add virtual gateways support -->
-					{{-- gateways --}}
-					{{--@if($segment == 'gateways')--}}
+					{{--@if($segment == 'stats')--}}
 						{{--<li class="active">--}}
 					{{--@else--}}
 						{{--<li>--}}
 							{{--@endif--}}
-							{{--<a href="{{ route('gateway.index') }}"><i--}}
-										{{--class="fa fa-plug"></i> <span class="nav-label">Gateways</span></a>--}}
+							{{--<a href="{{ route('dashboard.stats') }}"><i--}}
+										{{--class="fa fa-area-chart"></i> <span--}}
+										{{--class="nav-label">Statistics</span></a>--}}
 						{{--</li>--}}
+
+					@if($segment == 'gateways')
+						<li class="active">
+					@else
+						<li>
+							@endif
+							<a href="{{ route('gateway.index') }}"><i
+										class="fa fa-plug"></i> <span class="nav-label">Gateways</span></a>
+						</li>
 					</ul>
 				</li>
+				@endif
 		</ul>
 	</div>
 </nav>

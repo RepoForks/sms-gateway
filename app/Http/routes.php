@@ -33,21 +33,29 @@ Route::group(['middleware' => 'web'], function () {
 
 		// users and profiles
 		Route::get('users', ['as' => 'user.index', 'uses' => 'UserController@index']);
-		Route::get('users/{id}', ['as' => 'user.show', 'uses' => 'UserController@show']);
+		Route::get('users/profile', ['as' => 'user.show', 'uses' => 'UserController@show']);
 		Route::get('users/remove/{id}', ['as' => 'user.delete', 'uses'=> 'UserController@deleteUser']);
 		Route::post('users/password', ['as' => 'user.password.change', 'uses' => 'UserController@changePassword']);
+		Route::post('user/edit', ['as' => 'user.edit', 'uses' => 'UserController@editUser']);
+		Route::post('user/edit/email', ['as' => 'user.edit.email', 'uses' => 'UserController@editEmail']);
+		Route::get('user/show/{id}', ['as' => 'user.show.profile', 'uses' => 'UserController@profile']);
 
 		// service stats
 		Route::get('stats', ['as' => 'dashboard.stats', 'uses' => 'DashboardController@showStats']);
 
 		// virtual gateways
-		Route::get('gateways', ['as' => 'gateway.index', 'uses' => 'GatewaysController@index']);
+		Route::get('gateways', ['as' => 'gateway.index', 'uses' => 'GatewayController@index']);
+		Route::post('gateways/create', ['as' => 'gateway.create', 'uses' => 'GatewayController@createGateway']);
+		Route::get('gateways/remove/{id}', ['as' => 'gateway.remove', 'uses' => 'GatewayController@removeGateway']);
 
 		// services
 		Route::group(['prefix' => 'apis'], function(){
 
 			// verification api
 			Route::get('verification', ['as' =>'verification.index', 'uses' => 'VerificationServiceController@index']);
+			Route::get('verification/enable', ['as' => 'verification.enable', 'uses' => 'VerificationServiceController@enableApi']);
+			Route::get('verification/disable', ['as' => 'verification.disable', 'uses' => 'VerificationServiceController@disableApi']);
+			Route::post('verification/update', ['as' => 'verification.update', 'uses' => 'VerificationServiceController@update']);
 
 		});
 
@@ -60,9 +68,24 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('key/remove/{id}', ['as' => 'key.remove', 'uses' => 'ApiKeysController@safeDelete']);
 	});
 
-	// mobile api
-	Route::group(['prefix' => 'api'], function (){
+});
 
-	});
+// restful api
+Route::group(['prefix' => 'api', 'middleware' => 'api'], function (){
+
+	Route::post('auth/gateway', ['uses' => 'GatewayController@authGateway']);
+	Route::get('auth/gateway', ['uses' => 'GatewayController@authGateway']);
+
+	Route::post('sms/send', ['uses' => 'GatewayController@sendSms']);
+	Route::get('sms/send', ['uses' => 'GatewayController@sendSms']);
+
+	Route::post('sms/send/template', ['uses' => 'GatewayController@sendSmsTemplate']);
+	Route::get('sms/send/template', ['uses' => 'GatewayController@sendSmsTemplate']);
+
+	Route::post('verification/generate', ['uses' => 'VerificationServiceController@generate']);
+	Route::get('verification/generate', ['uses' => 'VerificationServiceController@generate']);
+
+	Route::post('verification/check', ['uses' => 'VerificationServiceController@valid']);
+	Route::get('verification/check', ['uses' => 'VerificationServiceController@valid']);
 
 });

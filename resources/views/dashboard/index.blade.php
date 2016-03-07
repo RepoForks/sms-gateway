@@ -12,7 +12,7 @@
 					<h5>Sent</h5>
 				</div>
 				<div class="ibox-content">
-					<h1 class="no-margins">0</h1>
+					<h1 class="no-margins"> {{ \Auth::user()->sentCountToday() }}</h1>
 					<small>Total sent today.</small>
 				</div>
 			</div>
@@ -20,17 +20,17 @@
 		<div class="col-md-6">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<span class="label label-info pull-right">Today</span>
-					<h5>Received</h5>
+					<span class="label label-info pull-right">Total</span>
+					<h5>Total sent</h5>
 				</div>
 				<div class="ibox-content">
-					<h1 class="no-margins">0</h1>
-					<small>Total received today.</small>
+					<h1 class="no-margins"> {{ \Auth::user()->sentCount() }}</h1>
+					<small>Total SMS sent.</small>
 				</div>
 			</div>
 		</div>
 
-		{{-- Some stuff --}}
+		 {{--Some stuff --}}
 		<div class="col-md-4" style="display: none">
 			<div class="flot-chart m-t-lg" style="height: 55px;">
 				<div class="flot-chart-content" id="flot-chart1"></div>
@@ -43,17 +43,10 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-content">
 					<div>
-                        <span class="pull-right text-right">
-                        <small>Average value of sales in the past month in: <strong>United
-		                        states</strong></small>
-                            <br/>
-                            All sales: 162,862
-                        </span>
-
-						<h3 class="font-bold no-margins">
-							Half-year revenue margin
+                        <h3 class="font-bold no-margins">
+							Sending statistics
 						</h3>
-						<small>Sales marketing.</small>
+						<small>Total sent sms.</small>
 					</div>
 
 					<div class="m-t-sm">
@@ -67,17 +60,17 @@
 							<div class="col-md-4">
 								<ul class="stat-list m-t-lg">
 									<li>
-										<h2 class="no-margins">2,346</h2>
-										<small>Total orders in period</small>
+										<h2 class="no-margins">{{ \Auth::user()->sentCountToday() }}</h2>
+										<small>Total sent today</small>
 										<div class="progress progress-mini">
-											<div class="progress-bar" style="width: 48%;"></div>
+											<div class="progress-bar" style="width: {{ \Auth::user()->sentPercentToday() }}%;"></div>
 										</div>
 									</li>
 									<li>
-										<h2 class="no-margins ">4,422</h2>
-										<small>Orders in last month</small>
+										<h2 class="no-margins ">{{ \Auth::user()->sentCount() }}</h2>
+										<small>Total sent this month</small>
 										<div class="progress progress-mini">
-											<div class="progress-bar" style="width: 60%;"></div>
+											<div class="progress-bar" style="width: {{ \Auth::user()->sentPercentMonth() }}%;"></div>
 										</div>
 									</li>
 								</ul>
@@ -86,68 +79,40 @@
 
 					</div>
 
-					<div class="m-t-md">
-						<small class="pull-right">
-							<i class="fa fa-clock-o"> </i>
-							Update on 16.07.2015
-						</small>
-						<small>
-							<strong>Analysis of sales:</strong> The value has been changed over time, and last month
-							reached a level over $50,000.
-						</small>
-					</div>
-
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-4">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<span class="label label-warning pull-right">Monthly</span>
+					<span class="label label-warning pull-right">Stats</span>
 					<h5>User activity</h5>
 				</div>
 				<div class="ibox-content">
 					<div class="row">
 						<div class="col-xs-6">
-							<small class="stats-label">Tokens active / Limit</small>
-							<h4>0 / 1000</h4>
+							<small class="stats-label">API keys / Limit</small>
+							<h4>{{ count(\Auth::user()->keys) }} / {{ \Auth::user()->token_limit }}</h4>
 						</div>
 
 						<div class="col-xs-6">
-							<small class="stats-label">Tokens inactive / Limit</small>
-							<h4>0 / 1000</h4>
+							<small class="stats-label">Templates / Limit</small>
+							<h4>{{ count(\Auth::user()->smsTemplates ) }} / {{ \Auth::user()->templates_limit }}</h4>
 						</div>
 					</div>
 				</div>
 
-				<div class="ibox-content">
-					<div class="row">
-						<div class="col-xs-6">
-							<small class="stats-label">Automatic sending / Limit</small>
-							<h4>0 / 1000</h4>
-						</div>
-
-						<div class="col-xs-6">
-							<small class="stats-label">Prepared SMS / Limit</small>
-							<h4>0 / 1000</h4>
-						</div>
-					</div>
-				</div>
 
 				<div class="ibox-content">
 					<div class="row">
-						<div class="col-xs-4">
-							<small class="stats-label">SMS Sent / Limit</small>
-							<h4>0 / 1000</h4>
+						<div class="col-xs-6">
+							<small class="stats-label">Sent month/ Limit</small>
+							<h4>{{ \Auth::user()->sentCountMonth() }} / {{ \Auth::user()->sent_limit_month }}</h4>
 						</div>
 
-						<div class="col-xs-4">
-							<small class="stats-label">SMS Received / Limit</small>
-							<h4>0 / 1000</h4>
-						</div>
-						<div class="col-xs-4">
-							<small class="stats-label">SMS Errors</small>
-							<h4>0</h4>
+						<div class="col-xs-6">
+							<small class="stats-label">Sent today / Limit</small>
+							<h4>{{ \Auth::user()->sentCountToday() }} / {{ \Auth::user()->sent_limit_today }}</h4>
 						</div>
 					</div>
 				</div>
@@ -177,57 +142,11 @@
 	<script>
 		$(document).ready(function () {
 
-
-			var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
-			var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
-
-			var data1 = [
-				{label: "Data 1", data: d1, color: '#17a084'},
-				{label: "Data 2", data: d2, color: '#127e68'}
-			];
-			$.plot($("#flot-chart1"), data1, {
-				xaxis : {
-					tickDecimals: 0
-				},
-				series: {
-					lines : {
-						show     : true,
-						fill     : true,
-						fillColor: {
-							colors: [{
-								opacity: 1
-							}, {
-								opacity: 1
-							}]
-						},
-					},
-					points: {
-						width: 0.1,
-						show : false
-					},
-				},
-				grid  : {
-					show       : false,
-					borderWidth: 0
-				},
-				legend: {
-					show: false,
-				}
-			});
+			var chartData = JSON.parse('<?php echo $stats ?>');
 
 			var lineData = {
 				labels  : ["January", "February", "March", "April", "May", "June", "July"],
 				datasets: [
-					{
-						label               : "Example dataset",
-						fillColor           : "rgba(220,220,220,0.5)",
-						strokeColor         : "rgba(220,220,220,1)",
-						pointColor          : "rgba(220,220,220,1)",
-						pointStrokeColor    : "#fff",
-						pointHighlightFill  : "#fff",
-						pointHighlightStroke: "rgba(220,220,220,1)",
-						data                : [65, 59, 40, 51, 36, 25, 40]
-					},
 					{
 						label               : "Example dataset",
 						fillColor           : "rgba(26,179,148,0.5)",
@@ -236,7 +155,7 @@
 						pointStrokeColor    : "#fff",
 						pointHighlightFill  : "#fff",
 						pointHighlightStroke: "rgba(26,179,148,1)",
-						data                : [48, 48, 60, 39, 56, 37, 30]
+						data                : chartData
 					}
 				]
 			};
@@ -259,7 +178,7 @@
 
 
 			var ctx = document.getElementById("lineChart").getContext("2d");
-			var myNewChart = new Chart(ctx).Line(lineData, lineOptions);
+			new Chart(ctx).Line(lineData, lineOptions);
 
 		});
 	</script>

@@ -11,34 +11,38 @@
 				</div>
 				<div class="ibox-content">
 					
-					{!! Form::open(['route' => 'sms.template.create', 'method' => 'post']) !!}
+					{!! Form::open(['route' => 'sms.template.create', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 
 					{{-- description field --}}
 					<div class="form-group">
-					    {!! Form::label('Description', 'Description:') !!}
-					    {!! Form::text('description', null, [
-					        'class' => 'form-control',
-					        'placeholder' => 'Enter some info about this SMS message'
-					    ]) !!}
+					    {!! Form::label('Description', 'Description:', ['class' => 'col-sm-2 control-label']) !!}
+					    <div class="col-sm-10">
+						    {!! Form::text('description', null, [
+						        'class' => 'form-control'
+						    ]) !!}
+					    </div>
 					</div>
 
 					{{-- sms content field --}}
 					<div class="form-group">
-					    {!! Form::label('SMS content', 'SMS content:') !!}
-					    {!! Form::textarea('content', null, [
-					        'class' => 'form-control',
-					        'placeholder' => 'Add here SMS text...',
-					        'maxlength' => 160
-					    ]) !!}
+					    {!! Form::label('SMS content', 'SMS content:', ['class' => 'col-sm-2 control-label']) !!}
+					    <div class="col-sm-10">
+						    {!! Form::textarea('content', null, [
+						        'class' => 'form-control',
+						        'maxlength' => 160
+						    ]) !!}
+						    <small>please use <a href="https://github.com/ptrstovka/sms-gateway/wiki" target="_blank">SMSgw markdown</a> system</small>
+					    </div>
 					</div>
 
-					<small>please use <a href="">SMSgw markdown</a> system</small>
 
 					{{-- submit field --}}
 					<div class="form-group">
-					    {!! Form::submit('Create prepared SMS', [
-					        'class' => 'btn btn-primary'
-					    ]) !!}
+					    <div class="col-sm-offset-2 col-sm-10">
+						    {!! Form::submit('Create prepared SMS', [
+						        'class' => 'btn btn-primary'
+						    ]) !!}
+					    </div>
 					</div>
 
 					{!! Form::close() !!}

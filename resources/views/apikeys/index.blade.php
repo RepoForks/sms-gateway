@@ -11,22 +11,25 @@
 				</div>
 				<div class="ibox-content">
 
-					{!! Form::open(['route' => 'keys.create', 'method' => 'post']) !!}
+					{!! Form::open(['route' => 'keys.create', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 
 						{{-- description field --}}
 						<div class="form-group">
-						    {!! Form::label('description', 'Key description:') !!}
-						    {!! Form::textarea('description', null, [
-						        'class' => 'form-control',
-						        'placeholder' => 'This key is used for...'
-						    ]) !!}
+						    {!! Form::label('description', 'Key description:', ['class' => 'col-sm-2 control-label']) !!}
+						    <div class="col-sm-10">
+							    {!! Form::text('description', null, [
+							        'class' => 'form-control'
+							    ]) !!}
+						    </div>
 						</div>
 
 						{{-- submit field --}}
 						<div class="form-group">
-						    {!! Form::submit('Generate Key', [
-						        'class' => 'btn btn-primary'
-						    ]) !!}
+						    <div class="col-sm-offset-2 col-sm-10">
+							    {!! Form::submit('Generate Key', [
+							        'class' => 'btn btn-primary'
+							    ]) !!}
+						    </div>
 						</div>
 
 					{!! Form::close() !!}

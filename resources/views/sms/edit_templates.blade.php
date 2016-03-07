@@ -4,7 +4,7 @@
 @section('action-area')
 	@parent
 	<div class="title-action">
-		<a class="btn btn-primary" href="{{ route('sms.prepared') }}">back</a>
+		<a class="btn btn-primary" href="{{ route('sms.template') }}">back</a>
 	</div>
 @endsection
 
@@ -17,7 +17,7 @@
 							<h5>Edit basic details</h5>
 						</div>
 						<div class="ibox-content">
-							{!! Form::open(['route' => ['sms.prepared.update', $sms->id], 'method' => 'post']) !!}
+							{!! Form::open(['route' => ['sms.template.update', $sms->id], 'method' => 'post']) !!}
 
 							{{-- Description Field --}}
 							<div class="form-group">
@@ -30,7 +30,7 @@
 							{{-- Content Field --}}
 							<div class="form-group">
 							    {!! Form::label('Content', 'Content:') !!}
-							    {!! Form::textarea('content', $sms->text, [
+							    {!! Form::textarea('content', $sms->content, [
 							        'class' => 'form-control'
 							    ]) !!}
 							</div>

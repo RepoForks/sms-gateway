@@ -20,9 +20,15 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
 	        $table->integer('role')->default(0);
             $table->rememberToken();
+	        $table->softDeletes();
+	        $table->unsignedInteger('token_limit')->default(10);
+	        $table->unsignedInteger('templates_limit')->default(10);
+	        $table->unsignedInteger('sent_limit_month')->default(300);
+	        $table->unsignedInteger('sent_limit_today')->default(100);
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
