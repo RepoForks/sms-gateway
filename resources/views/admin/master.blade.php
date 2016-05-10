@@ -11,6 +11,7 @@
 
 	@include('include.ins_header')
 
+
 </head>
 
 <body class="md-skin">
@@ -28,6 +29,7 @@
 			@include('admin.error')
 			@yield('content')
 		</div>
+
 		@include('admin.footer')
 
 	</div>

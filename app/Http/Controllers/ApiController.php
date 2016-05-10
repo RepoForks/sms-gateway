@@ -51,7 +51,11 @@ abstract class ApiController extends Controller
 	public function sendApiRequest($number, $content, $id){
 		$client = new Client(getSocketUrl());
 		$client->send($this->buildApiRegisterRequest());
+		$result = $client->receive();
+		hist('api.response', $result, $id);
 		$client->send($this->buildApiRequest($number, $content));
+		$result = $client->receive();
+		hist('api.response', $result, $id);
 		hist('sms.send', 'Sent SMS to ' . $number . ': ' . $content, $id);
 	}
 

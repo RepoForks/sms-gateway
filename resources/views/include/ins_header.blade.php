@@ -9,4 +9,6 @@
 	<link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 	{{-- template style --}}
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	{{--custom styles--}}
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet" >
 @show
