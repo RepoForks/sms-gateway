@@ -169,6 +169,7 @@ class GatewayController extends Controller
 
 	private function sendApiRequest($number, $content, $id){
 		$client = new Client(getSocketUrl());
+		$client->setTimeout(10000);
 		$client->send($this->buildApiRegisterRequest());
 		$result = $client->receive();
 		hist('api.response', $result, $id);
